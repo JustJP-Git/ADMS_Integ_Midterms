@@ -1,0 +1,23 @@
+﻿<Window x:Class="ADMS_Integ_Midterms.HomeStudent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ADMS_Integ_Midterms"
+        mc:Ignorable="d"
+        Title="HomeStudent" Height="450" Width="800" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid>
+        <DataGrid x:Name="dgStudents" AutoGenerateColumns="True" Margin="68,74,68,270" IsReadOnly="True"/>
+        <DataGrid x:Name="dgBorrow" AutoGenerateColumns="True" Margin="68,172,400,172" IsReadOnly="True"/>
+        <DataGrid x:Name="dgAvail" AutoGenerateColumns="True" Margin="68,272,68,3" IsReadOnly="True"/>
+        <DataGrid x:Name="dgFines" AutoGenerateColumns="True" Margin="400,172,68,172" IsReadOnly="True"/>
+        
+        <Label Content="Student Information" HorizontalAlignment="Left" Margin="68,37,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Borrow History" HorizontalAlignment="Left" Margin="68,137,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Outstanding Fines" HorizontalAlignment="Left" Margin="400,137,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Available Books" HorizontalAlignment="Left" Margin="68,235,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label x:Name="lbStudent" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" Width="600" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        
+        <Button x:Name="btnLogout" Content="Log Out" HorizontalAlignment="Left" Margin="662,10,0,0" VerticalAlignment="Top" Width="108" Click="btnLogout_Click"/>
+    </Grid>
+</Window>
