@@ -361,12 +361,3 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/ADMS_Integ_Midterms/MainWindow.xaml.cs
-/ADMS_Integ_Midterms/HomeAdmin.xaml.cs
-/ADMS_Integ_Midterms/HomeStudent.xaml.cs
-/ADMS_Integ_Midterms/DataClasses1.designer.cs
-/ADMS_Integ_Midterms/DataClasses1.dbml
-/ADMS_Integ_Midterms/ADMS_Integ_Midterms.csproj
-/ADMS_Integ_Midterms/Properties/Settings.Designer.cs
-/ADMS_Integ_Midterms/DataClasses1.designer.cs
-/ADMS_Integ_Midterms/DataClasses1.dbml
