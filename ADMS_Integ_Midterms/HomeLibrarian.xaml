@@ -5,15 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ADMS_Integ_Midterms"
         mc:Ignorable="d"
-        Title="HomeLibrarian" Height="450" Width="800">
+        Title="HomeLibrarian" Height="700" Width="1000" Closing="Window_Closing">
     <Grid>
-        <DataGrid x:Name="dgTable" AutoGenerateColumns="True" Margin="10,37,10,10"/>
         <ComboBox x:Name="cmbTable" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBoxItem Content="LibraryBooks" />
             <ComboBoxItem Content="BookGenre" />
-            <ComboBoxItem Content="Students" />++
+            <ComboBoxItem Content="Students" />
+            <ComboBoxItem Content="Courses" />
         </ComboBox>
-        <Button x:Name="deleteSelectedRowButton" Content="Delete Selected Row" Click="deleteSelectedRowButton_Click" IsEnabled="False" Margin="530,11,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label x:Name="lbChangedStatus" Content="" HorizontalAlignment="Left" Margin="149,10,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="deleteSelectedRowButton" Content="Delete Selected Row" Click="deleteSelectedRowButton_Click" IsEnabled="False" Margin="530,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Button x:Name="btnLogout" Content="Log Out" HorizontalAlignment="Left" Margin="662,10,0,0" VerticalAlignment="Top" Width="108" Click="btnLogout_Click"/>
+
+        <StackPanel Margin="0,40,0,0">
+            <GroupBox Header="Add Row" Grid.Row="1" Margin="10,0,10,11">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Name="spAdd" Orientation="Horizontal"/>
+                    <Button x:Name="AddRowButton" Content="Add" Click="AddRowButton_Click" Margin="5,0,0,0"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Update Row" Grid.Row="1" Margin="10,0,10,11">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Name="spUpdate" Orientation="Horizontal"/>
+                    <Button x:Name="UpdateRowButton" Content="Update" Click="UpdateRowButton_Click" Margin="5,0,0,0"/>
+                </StackPanel>
+            </GroupBox>
+
+            <DataGrid x:Name="dgTable" IsReadOnly="True" CanUserAddRows="False" Margin="10,0,10,10" Height="517" SelectionChanged="dgTable_SelectionChanged"/>
+
+
+           
+        </StackPanel>
     </Grid>
 </Window>
