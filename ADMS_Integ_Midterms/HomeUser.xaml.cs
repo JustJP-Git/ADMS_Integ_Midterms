@@ -23,5 +23,14 @@ namespace ADMS_Integ_Midterms
         {
             InitializeComponent();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (MessageBox.Show("Do you want to log out?", "Confirm", MessageBoxButton.YesNo) == MessageBoxResult.No)
+            {
+                e.Cancel = true;
+
+            }
+        }
     }
 }
