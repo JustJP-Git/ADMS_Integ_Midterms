@@ -20,7 +20,7 @@ namespace ADMS_Integ_Midterms
     /// </summary>
     public partial class HomeLibrarian : Window
     {
-        DataClasses1DataContext db = new DataClasses1DataContext(Properties.Settings.Default.NorthvilleLibraryConnectionString);
+        DataClasses1DataContext db = new DataClasses1DataContext(Properties.Settings.Default.Northville_LibraryConnectionString);
         private TextBox[] addtbxs,updatetbxs;
         private int cols = 0;
         public HomeLibrarian()
@@ -67,7 +67,6 @@ namespace ADMS_Integ_Midterms
         {
             if (dgTable.SelectedItem != null)
             {
-                ReloadTable();
                 string[] input = new string[0];
                 bool isNullorEmpty = false;
                 for (int x = 0; x < cols; x++)
@@ -364,7 +363,7 @@ namespace ADMS_Integ_Midterms
         }
         private void deleteSelectedRowButton_Click(object sender, RoutedEventArgs e)
         {
-            if (dgTable.SelectedItem != null && dgTable.SelectedItem is var selectedItem)
+            if (dgTable.SelectedItem != null)
             {
                 MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete row {dgTable.SelectedIndex}?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)
@@ -382,7 +381,7 @@ namespace ADMS_Integ_Midterms
                         else if (cmbTable.SelectedIndex == 3 && dgTable.SelectedItem is Course selectedItem3)
                             db.Courses.DeleteOnSubmit(selectedItem3);
                         db.SubmitChanges();
-                        db = new DataClasses1DataContext(Properties.Settings.Default.NorthvilleLibraryConnectionString);
+                        db = new DataClasses1DataContext(Properties.Settings.Default.Northville_LibraryConnectionString);
 
                         ReloadTable();
 
