@@ -7,17 +7,19 @@
         mc:Ignorable="d"
         Title="HomeStudent" Height="450" Width="800" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
-        <DataGrid x:Name="dgStudents" AutoGenerateColumns="True" Margin="68,74,68,270" IsReadOnly="True"/>
-        <DataGrid x:Name="dgBorrow" AutoGenerateColumns="True" Margin="68,172,400,172" IsReadOnly="True"/>
-        <DataGrid x:Name="dgAvail" AutoGenerateColumns="True" Margin="68,272,68,3" IsReadOnly="True"/>
-        <DataGrid x:Name="dgFines" AutoGenerateColumns="True" Margin="400,172,68,172" IsReadOnly="True"/>
-        
-        <Label Content="Student Information" HorizontalAlignment="Left" Margin="68,37,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="Borrow History" HorizontalAlignment="Left" Margin="68,137,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="Outstanding Fines" HorizontalAlignment="Left" Margin="400,137,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="Available Books" HorizontalAlignment="Left" Margin="68,235,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label x:Name="lbStudent" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" Width="600" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        
+        <Frame x:Name="Main" />
+
+        <DataGrid x:Name="dgStudents" AutoGenerateColumns="True" Margin="0,110,0,233" IsReadOnly="True"/>
+        <DataGrid x:Name="dgBorrow" AutoGenerateColumns="True" Margin="400,221,0,127" IsReadOnly="True"/>
+        <DataGrid x:Name="dgFines" AutoGenerateColumns="True" Margin="0,221,400,127" IsReadOnly="True"/>
+
+        <Label Content="Student Information" HorizontalAlignment="Left" Margin="0,73,0,0" VerticalAlignment="Top" FontSize="20" Width="186"/>
+        <Label Content="Borrow History" HorizontalAlignment="Left" Margin="400,185,0,0" VerticalAlignment="Top" FontSize="20" Width="140"/>
+        <Label Content="Outstanding Fines" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="170" Margin="0,185,0,0"/>
+        <Label x:Name="lbStudent" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" Width="600" VerticalContentAlignment="Center" Margin="0,5,0,0" HorizontalContentAlignment="Center"/>
+
         <Button x:Name="btnLogout" Content="Log Out" HorizontalAlignment="Left" Margin="662,10,0,0" VerticalAlignment="Top" Width="108" Click="btnLogout_Click"/>
+        <Button x:Name="btn_Next" Content="View Available Books" HorizontalAlignment="Left" Margin="638,380,0,0" VerticalAlignment="Top" Width="132" Click="btn_Next_Click"/>
+        <Button x:Name="btnUpdateInfo" Content="Edit" HorizontalAlignment="Left" Margin="700,85,0,0" VerticalAlignment="Top" Width="70" Click="btnUpdateInfo_Click"/>
     </Grid>
 </Window>

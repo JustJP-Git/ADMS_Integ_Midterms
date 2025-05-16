@@ -15,13 +15,13 @@ using System.Windows.Shapes;
 namespace ADMS_Integ_Midterms
 {
     /// <summary>
-    /// Interaction logic for HomeAdmin.xaml
+    /// Interaction logic for HomeAdminStudents.xaml
     /// </summary>
-    public partial class HomeAdmin : Window
+    public partial class HomeAdminStudents : Window
     {
         DataClasses1DataContext db = new DataClasses1DataContext(Properties.Settings.Default.Northville_LibraryConnectionString);
         private Users_Table selectedTable;
-        public HomeAdmin()
+        public HomeAdminStudents()
         {
             InitializeComponent();
             LoadUsers();
@@ -31,7 +31,7 @@ namespace ADMS_Integ_Midterms
         {
             try
             {
-                var users = from u in db.Users_Tables select u;
+                var users = from u in db.Students select u;
                 userDataGrid.ItemsSource = users.ToList();
 
                 statusTextBlock.Text = "Users loaded successfully.";

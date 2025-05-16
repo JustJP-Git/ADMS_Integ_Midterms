@@ -40,7 +40,7 @@ namespace ADMS_Integ_Midterms
                     Window home;
                     if (getAccessLevel() == "adminaccess")
                     {
-                        home = new HomeAdmin();
+                        home = new HomeAdminPrompt();
                         MessageBox.Show("Login successful", $"Welcome back, {user_txt.Text}!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
                     else if (getAccessLevel() == "librarianaccess")

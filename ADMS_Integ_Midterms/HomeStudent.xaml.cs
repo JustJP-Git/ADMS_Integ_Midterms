@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Navigation;
 
 namespace ADMS_Integ_Midterms
 {
@@ -55,9 +56,6 @@ namespace ADMS_Integ_Midterms
                 var borrowinfo = from u in db1.BorrowTransactionViews where u.Student_ID == loginID select u;
                 dgBorrow.ItemsSource = borrowinfo.ToList();
 
-                var availability = from u in db1.BooksAvailabilityViews select u;
-                dgAvail.ItemsSource = availability.ToList();
-
                 var fines = from u in db1.OutstandingFines where u.Student_ID == loginID select u;
                 dgFines.ItemsSource = fines.ToList();
             }
@@ -72,6 +70,17 @@ namespace ADMS_Integ_Midterms
             MainWindow main = new MainWindow();
             main.Show();
             this.Close();
+        }
+
+        private void btn_Next_Click(object sender, RoutedEventArgs e)
+        {
+            HomeStudentPage2 page2 = new HomeStudentPage2();
+            this.Content = page2;
+        }
+
+        private void btnUpdateInfo_Click(object sender, RoutedEventArgs e)
+        {
+            dgStudents.IsReadOnly = false;
         }
     }
 }

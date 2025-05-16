@@ -60,6 +60,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="HomeAdminPrompt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HomeAdminStudents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HomeClerical.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -73,6 +81,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HomeStudentLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HomeStudentPage2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -96,6 +108,12 @@
     <Compile Include="HomeAdmin.xaml.cs">
       <DependentUpon>HomeAdmin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HomeAdminPrompt.xaml.cs">
+      <DependentUpon>HomeAdminPrompt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HomeAdminStudents.xaml.cs">
+      <DependentUpon>HomeAdminStudents.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomeClerical.xaml.cs">
       <DependentUpon>HomeClerical.xaml</DependentUpon>
     </Compile>
@@ -107,6 +125,9 @@
     </Compile>
     <Compile Include="HomeStudentLogin.xaml.cs">
       <DependentUpon>HomeStudentLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HomeStudentPage2.xaml.cs">
+      <DependentUpon>HomeStudentPage2.xaml</DependentUpon>
     </Compile>
     <Compile Include="HomeUser.xaml.cs">
       <DependentUpon>HomeUser.xaml</DependentUpon>
