@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ADMS_Integ_Midterms"
         mc:Ignorable="d"
-        Title="HomeAdminStudents" Height="700" Width="1000" WindowStartupLocation="CenterScreen">
+        Title="HomeAdminStudents" Height="700" Width="1363" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" MinHeight="34"/>
@@ -16,54 +16,56 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <GroupBox Header="Add New User" Grid.Row="1" Margin="10,10,10,11">
+        <GroupBox Header="Add a Student" Grid.Row="1" Margin="10,10,10,11">
             <StackPanel Orientation="Horizontal">
-                <Label Content="User ID:" Margin="5"/>
-                <TextBox x:Name="addUserIdTextBox" Width="100" Margin="5"/>
-                <Label Content="Password:" Margin="5"/>
-                <TextBox x:Name="addPasswordTextBox" Width="100" Margin="5"/>
-                <Label Content="User Name:" Margin="5"/>
-                <TextBox x:Name="addUserNameTextBox" Width="150" Margin="5"/>
-                <Label Content="Role:" Margin="5"/>
-                <ComboBox x:Name="addRoleComboBox" Width="120" Margin="5" SelectedValuePath="Content">
-                    <ComboBoxItem Content="adminaccess" />
-                    <ComboBoxItem Content="librarianaccess" />
-                    <ComboBoxItem Content="studentaccess" />
-                    <ComboBoxItem Content="clericalaccess" />
-                </ComboBox>
+                <Label Content="Student ID:"/>
+                <TextBox x:Name="addID" Width="100" Margin="5"/>
+                <Label Content="Name:" Margin="5"/>
+                <TextBox x:Name="addName" Width="100" Margin="5"/>
+                <Label Content="Email:" Margin="5"/>
+                <TextBox x:Name="addEmail" Width="150" Margin="5"/>
+                <Label Content="Contact:" Margin="5"/>
+                <TextBox x:Name="addContact" Width="150" Margin="5"/>
+                <Label Content="Address:" Margin="5"/>
+                <TextBox x:Name="addAddress" Width="150" Margin="5"/>
+                <Label Content="Course ID:" Margin="5"/>
+                <TextBox x:Name="addCourse" Width="150" Margin="5"/>
                 <Button x:Name="addNewUserButton" Content="Add User" Click="addNewUserButton_Click" Margin="5"/>
             </StackPanel>
         </GroupBox>
 
         <GroupBox Header="Update User" Grid.Row="2" Margin="10,9,10,11">
             <StackPanel Orientation="Horizontal">
-                <Label Content="User ID:" Margin="5"/>
-                <TextBox x:Name="updateUserIdTextBox" Width="100" Margin="5" IsEnabled="False"/>
-                <Label Content="New Password:" Margin="5"/>
-                <TextBox x:Name="updatePasswordTextBox" Width="100" Margin="5"/>
-                <Label Content="New User Name:" Margin="5"/>
-                <TextBox x:Name="updateUserNameTextBox" Width="150" Margin="5"/>
-                <Label Content="New Role:" Margin="5"/>
-                <ComboBox x:Name="updateRoleComboBox" Width="120" Margin="5" SelectedValuePath="Content">
-                    <ComboBoxItem Content="adminaccess" />
-                    <ComboBoxItem Content="librarianaccess" />
-                    <ComboBoxItem Content="studentaccess" />
-                    <ComboBoxItem Content="clericalaccess" />
-                </ComboBox>
+                <Label Content="Student ID:"/>
+                <TextBox x:Name="updateID" Width="100" Margin="5" IsEnabled="False"/>
+                <Label Content="Name:" Margin="5"/>
+                <TextBox x:Name="updateName" Width="100" Margin="5"/>
+                <Label Content="Email:" Margin="5"/>
+                <TextBox x:Name="updateEmail" Width="150" Margin="5"/>
+                <Label Content="Contact:" Margin="5"/>
+                <TextBox x:Name="updateContact" Width="150" Margin="5"/>
+                <Label Content="Address:" Margin="5"/>
+                <TextBox x:Name="updateAddress" Width="150" Margin="5"/>
+                <Label Content="Course ID:" Margin="5"/>
+                <TextBox x:Name="updateCourse" Width="150" Margin="5"/>
                 <Button x:Name="saveUserButton" Content="Save Changes" Click="saveUserButton_Click" Margin="5" IsEnabled="False"/>
             </StackPanel>
         </GroupBox>
 
         <GroupBox Header="View User Details" Grid.Row="3" Margin="10,8,10,12">
             <StackPanel Orientation="Horizontal">
-                <Label Content="User ID:" Margin="5"/>
-                <TextBox x:Name="viewUserIdTextBox" Width="100" Margin="5" IsEnabled="False"/>
-                <Label Content="Password:" Margin="5"/>
-                <TextBox x:Name="viewPasswordTextBox" Width="100" Margin="5" IsEnabled="False"/>
-                <Label Content="User Name:" Margin="5"/>
-                <TextBox x:Name="viewUserNameTextBox" Width="150" Margin="5" IsEnabled="False"/>
-                <Label Content="Role:" Margin="5"/>
-                <TextBox x:Name="viewRoleTextBox" Width="120" Margin="5" IsEnabled="False"/>
+                <Label Content="Student ID:"/>
+                <TextBox x:Name="viewID" Width="100" Margin="5" IsEnabled="False"/>
+                <Label Content="Name:" Margin="5"/>
+                <TextBox x:Name="viewName" Width="100" Margin="5" IsEnabled="False"/>
+                <Label Content="Email:" Margin="5"/>
+                <TextBox x:Name="viewEmail" Width="150" Margin="5" IsEnabled="False"/>
+                <Label Content="Contact:" Margin="5"/>
+                <TextBox x:Name="viewContact" Width="150" Margin="5" IsEnabled="False"/>
+                <Label Content="Address:" Margin="5"/>
+                <TextBox x:Name="viewAddress" Width="150" Margin="5" IsEnabled="False"/>
+                <Label Content="Course ID:" Margin="5"/>
+                <TextBox x:Name="viewCourse" Width="150" Margin="5" IsEnabled="False"/>
             </StackPanel>
         </GroupBox>
 

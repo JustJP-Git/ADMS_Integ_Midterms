@@ -20,7 +20,7 @@ namespace ADMS_Integ_Midterms
     public partial class HomeAdminStudents : Window
     {
         DataClasses1DataContext db = new DataClasses1DataContext(Properties.Settings.Default.Northville_LibraryConnectionString);
-        private Users_Table selectedTable;
+        private Student selectedTable;
         public HomeAdminStudents()
         {
             InitializeComponent();
@@ -45,24 +45,29 @@ namespace ADMS_Integ_Midterms
 
         private void addNewUserButton_Click(object sender, RoutedEventArgs e)
         {
-            string userId = addUserIdTextBox.Text.Trim();
-            string password = addPasswordTextBox.Text.Trim();
-            string userName = addUserNameTextBox.Text.Trim();
-            string selectedRole = (addRoleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+            string userId = addID.Text.Trim();
+            string name = addName.Text.Trim();
+            string email = addEmail.Text.Trim();
+            string contact = addContact.Text.Trim();
+            string address = addAddress.Text.Trim();
+            int.TryParse(addCourse.Text, out int course);
 
 
-            if (!string.IsNullOrEmpty(userId) && !string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(selectedRole))
+            if (!string.IsNullOrEmpty(userId) && !string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(contact) && !string.IsNullOrEmpty(address) && !string.IsNullOrEmpty(addCourse.Text))
             {
-                if (!db.Users_Tables.Any(u => u.User_ID == userId))
+                if (!db.Students.Any(u => u.Student_ID == userId))
                 {
-                    var newUser = new Users_Table
+                    var newUser = new Student
                     {
-                        User_ID = userId,
-                        User_Pass = password,
-                        Username = userName,
-                        Access_Level = selectedRole
+                        Student_ID = userId,
+                        Student_Name = name,
+                        Student_Email = email,
+                        Student_ContactNum = contact,
+                        Student_Address = address,
+                        Course_ID = course
                     };
-                    db.Users_Tables.InsertOnSubmit(newUser);
+
+                    db.Students.InsertOnSubmit(newUser);
 
                     try
                     {
@@ -70,11 +75,13 @@ namespace ADMS_Integ_Midterms
 
                         LoadUsers();
 
-                        statusTextBlock.Text = $"User '{userId}' added successfully with Role: '{selectedRole}'.";
-                        addUserIdTextBox.Clear();
-                        addPasswordTextBox.Clear();
-                        addUserNameTextBox.Clear();
-                        addRoleComboBox.SelectedIndex = -1;
+                        statusTextBlock.Text = $"User '{userId}' added successfully.";
+                        addID.Clear();
+                        addName.Clear();
+                        addEmail.Clear();
+                        addContact.Clear();
+                        addAddress.Clear();
+                        addCourse.Clear();
                     }
                     catch (Exception ex)
                     {
@@ -90,26 +97,30 @@ namespace ADMS_Integ_Midterms
             }
             else
             {
-                MessageBox.Show("User ID, password, user name, and role cannot be empty.");
-                statusTextBlock.Text = "User ID, password, user name, and role cannot be empty.";
+                MessageBox.Show("Ensure that no fields are left empty.");
+                statusTextBlock.Text = "Ensure that no fields are left empty.";
             }
         }
 
         private void userDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (userDataGrid.SelectedItem != null && userDataGrid.SelectedItem is Users_Table selectedUser)
+            if (userDataGrid.SelectedItem != null && userDataGrid.SelectedItem is Student selectedUser)
             {
                 selectedTable = selectedUser;
 
-                updateUserIdTextBox.Text = selectedTable.User_ID;
-                updatePasswordTextBox.Text = selectedTable.User_Pass;
-                updateUserNameTextBox.Text = selectedTable.Username;
-                updateRoleComboBox.SelectedItem = selectedTable.Access_Level;
+                updateID.Text = selectedTable.Student_ID;
+                updateName.Text = selectedTable.Student_Name;
+                updateEmail.Text = selectedTable.Student_Email;
+                updateContact.Text = selectedTable.Student_ContactNum;
+                updateAddress.Text = selectedTable.Student_Address;
+                updateCourse.Text = selectedTable.Course_ID.ToString();
 
-                viewUserIdTextBox.Text = selectedTable.User_ID;
-                viewPasswordTextBox.Text = selectedTable.User_Pass;
-                viewUserNameTextBox.Text = selectedTable.Username;
-                viewRoleTextBox.Text = selectedTable.Access_Level;
+                viewID.Text = selectedTable.Student_ID;
+                viewName.Text = selectedTable.Student_Name;
+                viewEmail.Text = selectedTable.Student_Email;
+                viewContact.Text = selectedTable.Student_ContactNum;
+                viewAddress.Text = selectedTable.Student_Address;
+                viewCourse.Text = selectedTable.Course_ID.ToString();
 
                 saveUserButton.IsEnabled = true;
                 deleteSelectedUserButton.IsEnabled = true;
@@ -117,14 +128,19 @@ namespace ADMS_Integ_Midterms
             else
             {
                 selectedUser = null;
-                updateUserIdTextBox.Clear();
-                updatePasswordTextBox.Clear();
-                updateUserNameTextBox.Clear();
-                updateRoleComboBox.SelectedIndex = -1;
-                viewUserIdTextBox.Clear();
-                viewPasswordTextBox.Clear();
-                viewUserNameTextBox.Clear();
-                viewRoleTextBox.Clear();
+                updateID.Clear();
+                updateName.Clear();
+                updateEmail.Clear();
+                updateContact.Clear();
+                updateAddress.Clear();
+                updateCourse.Clear();
+
+                viewID.Clear();
+                viewName.Clear();
+                viewEmail.Clear();
+                viewContact.Clear();
+                viewAddress.Clear();
+                viewCourse.Clear();
                 saveUserButton.IsEnabled = false;
                 deleteSelectedUserButton.IsEnabled = false;
             }
@@ -134,41 +150,20 @@ namespace ADMS_Integ_Midterms
         {
             if (selectedTable != null)
             {
-                selectedTable.User_Pass = updatePasswordTextBox.Text.Trim();
-                selectedTable.Username = updateUserNameTextBox.Text.Trim();
-                string selectedRole = (updateRoleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+                selectedTable.Student_Name = updateName.Text.Trim();
+                selectedTable.Student_Email = updateEmail.Text.Trim();
+                selectedTable.Student_ContactNum = updateContact.Text.Trim();
+                selectedTable.Student_Address = updateAddress.Text.Trim();
+                selectedTable.Course = db.Courses.Single(x => x.Course_ID == int.Parse(updateCourse.Text.Trim()));
 
-                if (!string.IsNullOrEmpty(selectedRole))
+                try
                 {
-                    selectedTable.Access_Level = selectedRole;
-
-                    try
-                    {
-                        db.SubmitChanges();
-                        LoadUsers();
-
-                        statusTextBlock.Text = $"User '{selectedTable.User_ID}' updated successfully with Role: '{selectedRole}'.";
-                        updateUserIdTextBox.Clear();
-                        updatePasswordTextBox.Clear();
-                        updateUserNameTextBox.Clear();
-                        updateRoleComboBox.SelectedIndex = -1;
-                        viewUserIdTextBox.Clear();
-                        viewPasswordTextBox.Clear();
-                        viewUserNameTextBox.Clear();
-                        viewRoleTextBox.Clear();
-                        saveUserButton.IsEnabled = false;
-                        selectedTable = null;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error updating user: " + ex.Message);
-                        statusTextBlock.Text = "Error updating user.";
-                    }
+                    db.SubmitChanges();
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Please select a role to update.");
-                    statusTextBlock.Text = "Please select a role to update.";
+                    MessageBox.Show("Error updating row: " + ex.Message);
+                    return;
                 }
             }
             else
@@ -178,19 +173,28 @@ namespace ADMS_Integ_Midterms
             }
         }
 
+        private void updateCourse_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int courseId;
+            if (int.TryParse(updateCourse.Text.Trim(), out courseId))
+            {
+                viewCourse.Text = courseId.ToString();
+            }
+        }
+
         private void deleteSelectedUserButton_Click(object sender, RoutedEventArgs e)
         {
-            if (userDataGrid.SelectedItem != null && userDataGrid.SelectedItem is Users_Table selectedUser)
+            if (userDataGrid.SelectedItem != null && userDataGrid.SelectedItem is Student selectedUser)
             {
                 selectedTable = selectedUser;
-                MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete user '{selectedTable.User_ID}'?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete user '{selectedTable.Student_ID}'?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)
                 {
                     try
                     {
-                        string deletedUserID = selectedTable.User_ID;
+                        string deletedUserID = selectedTable.Student_ID;
 
-                        db.Users_Tables.DeleteOnSubmit(selectedTable);
+                        db.Students.DeleteOnSubmit(selectedTable);
                         db.SubmitChanges();
                         db = new DataClasses1DataContext(Properties.Settings.Default.Northville_LibraryConnectionString);
                         LoadUsers();
@@ -198,14 +202,19 @@ namespace ADMS_Integ_Midterms
                         statusTextBlock.Text = $"User '{deletedUserID}' deleted successfully.";
                         deleteSelectedUserButton.IsEnabled = false;
                         selectedTable = null;
-                        updateUserIdTextBox.Clear();
-                        updatePasswordTextBox.Clear();
-                        updateUserNameTextBox.Clear();
-                        updateRoleComboBox.SelectedIndex = -1;
-                        viewUserIdTextBox.Clear();
-                        viewPasswordTextBox.Clear();
-                        viewUserNameTextBox.Clear();
-                        viewRoleTextBox.Clear();
+                        updateID.Clear();
+                        updateName.Clear();
+                        updateEmail.Clear();
+                        updateContact.Clear();
+                        updateAddress.Clear();
+                        updateCourse.Clear();
+
+                        viewID.Clear();
+                        viewName.Clear();
+                        viewEmail.Clear();
+                        viewContact.Clear();
+                        viewAddress.Clear();
+                        viewCourse.Clear();
                         saveUserButton.IsEnabled = false;
                     }
                     catch (Exception ex)

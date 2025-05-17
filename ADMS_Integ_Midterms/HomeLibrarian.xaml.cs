@@ -91,7 +91,7 @@ namespace ADMS_Integ_Midterms
                         row.Book_Author = input[2];
                         row.Book_ISBN = input[3];
                         row.Book_PublicationYear = int.Parse(input[4]);
-                        row.BookGenre_ID = int.Parse(input[5]);
+                        row.BookGenre = db.BookGenres.Single(x => x.BookGenre_ID == int.Parse(input[5]));
                         row.Available_Quantity = int.Parse(input[6]);
                         try
                         {
@@ -129,7 +129,7 @@ namespace ADMS_Integ_Midterms
                         row.Student_Email = input[2];
                         row.Student_ContactNum = input[3];
                         row.Student_Address = input[4];
-                        row.Course_ID = int.Parse(input[5]);
+                        row.Course = db.Courses.Single(x => x.Course_ID == int.Parse(input[5]));
                         try
                         {
                             db.SubmitChanges();

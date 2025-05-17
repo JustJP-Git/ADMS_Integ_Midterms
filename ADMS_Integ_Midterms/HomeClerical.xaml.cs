@@ -109,12 +109,11 @@ namespace ADMS_Integ_Midterms
                         var row = (from r in db.BorrowTransactions
                                    where r.Borrow_ID == sItem0.Borrow_ID
                                    select r).SingleOrDefault();
-                        row.Borrow_ID = int.Parse(input[0]);
-                        row.Student_ID = input[1];
-                        row.Book_ID = int.Parse(input[2]);
+                        row.Student = db.Students.Single(x => x.Student_ID == input[1]);
+                        row.LibraryBook = db.LibraryBooks.Single(x => x.Book_ID == int.Parse(input[2]));
                         row.Borrow_Date = DateTime.Parse(updatecalendar[0].Text);
                         row.Due_Date = DateTime.Parse(updatecalendar[1].Text);
-                        row.ReturnStatus_ID = int.Parse(input[5]);
+                        row.BookReturnStatus = db.BookReturnStatus.Single(x => x.ReturnStatus_ID == int.Parse(input[5]));
                         try
                         {
                             db.SubmitChanges();
@@ -134,7 +133,6 @@ namespace ADMS_Integ_Midterms
                         var row = (from r in db.BookReturnStatus
                                    where r.ReturnStatus_ID == sItem1.ReturnStatus_ID
                                    select r).SingleOrDefault();
-                        row.ReturnStatus_ID = int.Parse(input[0]);
                         row.ReturnStatus_Desc = input[1];
                         try
                         {
@@ -152,8 +150,7 @@ namespace ADMS_Integ_Midterms
                         var row = (from r in db.CollectedFines
                                    where r.CollectedFines_ID == sItem2.CollectedFines_ID
                                    select r).SingleOrDefault();
-                        row.CollectedFines_ID = int.Parse(input[0]);
-                        row.Borrow_ID = int.Parse(input[1]);
+                        row.BorrowTransaction = db.BorrowTransactions.Single(x => x.Borrow_ID == int.Parse(input[1]));
                         row.Days_Late = int.Parse(input[2]);
                         row.Accrued_Fines = int.Parse(input[3]);
                         try
@@ -172,7 +169,7 @@ namespace ADMS_Integ_Midterms
                         var row = (from r in db.LibraryVisits
                                    where r.Visit_ID == sItem3.Visit_ID
                                    select r).SingleOrDefault();
-                        row.Visit_ID = int.Parse(input[0]);
+                        row.Student = db.Students.Single(x => x.Student_ID == input[1]);
                         row.Visit_Date = DateTime.Parse(updatecalendar[2].Text);
                         try
                         {
